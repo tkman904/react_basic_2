@@ -1,26 +1,39 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 
+/*
+    관리 = 출력화면을 찾는다
+          Router
+             |
+          화면 모음 : Routes
+             |
+          화면 1개 : Route
+ */
+import Home from "./components/main/Home"; // Route
+import Header from "./components/main/Header";
+import FoodDetail from "./components/food/FoodDetail";
+import RecipeList from "./components/recipe/RecipeList";
+import RecipeDetail from "./components/recipe/RecipeDetail";
+import FoodFind from "./components/food/FoodFind";
+/*
+    1. typescript
+    2. nodejs
+    3. jpa
+    4. mysql
+ */
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <Router>
+            <Header/>
+            <Routes>
+                <Route path="/" element={<Home/>}/>
+                <Route path="/food/detail/:fno" element={<FoodDetail/>}/>
+                <Route path="/recipe/list" element={<RecipeList/>}/>
+                <Route path="/recipe/detail/:no" element={<RecipeDetail/>}/>
+                <Route path="/food/find" element={<FoodFind/>}/>
+            </Routes>
+        </Router>
+    );
 }
 
 export default App;
